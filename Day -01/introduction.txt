@@ -1,0 +1,160 @@
+MY SQL
+
+What is Data?
+Data is a collection of raw facts, figures, observations, or symbols—such as numbers, text, images, or signals—that can be stored, processed, and analyzed to produce meaningful information and support decision-making.
+
+Types of  Data?
+1) Structured data
+Definition: Data that follows a fixed, predefined schema and fits neatly into rows and columns, with each field having a specific data type.
+•	Storage: Relational databases (SQL), data warehouses, spreadsheets.
+•	Examples: Customer tables (ID, name, email), transaction logs, inventory tables, sensor readings in a fixed format.
+•	Pros: Easy to query (SQL), fast analytics, strong data integrity.
+•	Cons: Rigid schema; harder to adapt to new fields or formats.
+
+2) Semi structured data
+Definition: Data that does not conform to a strict table schema but includes tags, keys, or metadata that provide some organization and hierarchy.
+•	Storage: NoSQL databases, document stores, log systems, data lakes.
+•	Examples: JSON, XML, CSV with variable columns, emails (headers + body), application logs, API responses.
+•	Pros: Flexible schema; easier to evolve; still machine readable via tags/keys.alation+2
+•	Cons: More complex to query and enforce consistency than fully structured data.
+
+3) Unstructured data
+Definition: Data with no predefined format or data model, stored in its native form.
+•	Storage: File systems, object storage, data lakes, content management systems.
+•	Examples: Text documents, PDFs, emails (body), images, audio, video, social media posts, web pages.
+•	Pros: Captures rich, real world information; essential for AI/ML (NLP, computer vision).
+•	Cons: Harder to search, index, and analyze without additional processing (e.g., OCR, transcription, embeddings).
+
+Explain file management system?
+An FMS lets users and applications work with files using simple operations (create, open, read, write, delete) without needing to manage low level disk details. It maps logical names and paths (like C:\Docs\report.pdf) to physical locations on the storage medium and enforces rules for safe, efficient access.
+
+Key functions: -
+Typical functions of a file management system 
+•	File creation, deletion, and modification – create new files, remove old ones, update contents.
+•	Directory (folder) management – organize files into hierarchical folders for easy navigation.
+•	Naming and path management – assign file names and maintain paths so files can be located reliably.
+•	Storage allocation – decide where on the disk a file’s data blocks go; manage free space.
+•	Access and retrieval – support operations like open, read, write, seek, and close.
+•	Security and access control – enforce permissions (who can read/write/execute a file).
+•	Concurrency control – handle multiple programs/users accessing files at the same time to avoid corruption.
+•	Metadata handling – store attributes like size, type, timestamps, owner, and permissions.
+•	Backup and recovery – help restore files after accidental deletion, corruption, or failure.
+What are the drawbacks in file management?
+File management (file processing) systems have several well known drawbacks, especially as data volume and users grow.
+Main drawbacks :-
+•	Data redundancy – The same data is often stored in multiple files, wasting space and effort.
+•	Data inconsistency – When redundant copies are updated in some files but not others, records conflict.
+•	Data isolation – Related data is scattered across different files/departments, making it hard to combine and analyze.
+•	Program–data dependence – File formats and structures are hard coded in applications; changing the format often requires rewriting programs.
+•	Limited data sharing and access – Each new query or report often needs a new program; flexible, ad hoc querying is difficult.
+•	Poor data integrity – Few built in constraints (like keys or validation rules), so incorrect or inconsistent data can easily enter.
+•	Weak security and access control – Permissions are usually at the file level, not at record/field level; unauthorized access is easier.
+•	Concurrency problems – Multiple users updating the same file can cause lost updates and anomalies due to lack of proper concurrency control.
+•	No atomicity/transaction support – Operations may partially complete (e.g., update one file but fail on another), leaving the system in an inconsistent state.
+•	Difficult backup and recovery – Backup/recovery is more manual and less reliable; restoring consistent data after failure is harder.
+•	Inefficient retrieval at scale – As files grow, searching and joining data across files becomes slow and complex.
+
+These limitations are why many organizations move from pure file based management to database management systems (DBMS) for critical, shared, or large scale data.
+
+
+What is  DBMS ?
+A DBMS (Database Management System) is software that creates, stores, manages, and controls access to databases so users and applications can efficiently and safely work with data.
+
+Core idea
+•	A database is an organized, electronic collection of data (often in tables).
+•	The DBMS is the software layer between users/applications and that data, handling how it is stored, queried, updated, and protected.
+
+What a DBMS does
+Key functions include
+•	Data definition – define structures (tables, columns, keys, constraints).
+•	Data storage and organization – store data efficiently on disk/memory.
+•	Data manipulation – insert, update, delete, and read data (often via SQL).
+•	Query processing – execute queries and return results quickly.
+•	Security and access control – manage users, roles, and permissions.
+•	Concurrency control – allow many users to work at once without corrupting data.
+•	Transaction management – ensure operations are atomic, consistent, isolated, and durable (ACID).
+•	Backup and recovery – protect against data loss and restore after failures.
+•	Integrity enforcement – enforce rules (keys, constraints) to keep data accurate.
+
+Why it matters
+Compared to simple file management, a DBMS reduces redundancy and inconsistency, supports powerful querying, improves sharing, and provides strong security and reliability for multi user applications
+
+What are the Building Blocks? 
+The building blocks of a DBMS can be viewed at two levels: architectural components inside the DBMS software, and the overall system components (hardware, software, data, people, procedures).
+1) Core internal components (DBMS architecture)
+These are the main “engine” parts that make a DBMS work:
+•	Query Processor
+o	Parses and checks queries (syntax, permissions).
+o	Optimizes them (chooses efficient execution plans).
+o	Generates low level instructions for execution.
+•	Execution / Runtime Engine
+o	Executes the optimized plan: reads/writes data, performs joins, filters, aggregations, etc.
+o	Coordinates with the storage engine to get and update records.
+•	Storage Engine
+o	Manages how data is physically stored on disk/memory (pages, blocks, files).
+o	Handles indexes, access methods, buffer management (caching), and space allocation.
+•	Transaction Manager
+o	Ensures ACID properties: atomicity, consistency, isolation, durability.
+o	Manages commits, rollbacks, and concurrency control (locks, timestamps).
+•	Recovery Manager
+o	Uses logs and checkpoints to recover after crashes or failures.
+o	Restores the database to a consistent state.
+•	Metadata / Data Dictionary
+o	Stores schema information: tables, columns, types, constraints, indexes, users, privileges.
+o	Used by the query processor and other components to understand the database structure.
+•	Security & Authorization Module
+o	Enforces authentication, roles, and access control (who can do what).
+These components work together so users can send high level queries (e.g., SQL) and get correct, fast, safe results.
+2) Overall system building blocks
+At a broader level, a database system includes:
+•	Hardware – servers, CPUs, memory, storage (HDD/SSD), network devices.
+•	Software – DBMS itself, OS, network software, and application programs.
+•	Data – the actual stored information plus metadata (schema, constraints).
+•	Procedures – rules and instructions for using, managing, and backing up the database.
+•	People – database administrators (DBAs), designers, developers, and end users.
+If you tell me your context (exam notes, system design, or interview prep), I can condense this into a short, exam style list.
+
+What are the features of DBMS?
+A DBMS provides a set of built in features that make data storage, access, and management efficient, secure, and reliable.
+Core features of a DBMS
+•	Data storage and retrieval – Efficiently stores large volumes of data and supports fast search and query using indexes and optimization.
+•	Data definition & schema management – Lets you define logical structure (tables, columns, keys, constraints) separately from physical storage.
+•	Data manipulation – Supports inserting, updating, deleting, and reading data, typically via SQL or similar query languages.
+•	Data security and access control – Provides authentication, user roles, permissions, and sometimes encryption to prevent unauthorized access.
+•	Data integrity enforcement – Enforces rules like primary keys, foreign keys, unique and check constraints so data remains accurate and consistent.
+•	Concurrency control – Allows multiple users/applications to access and update data simultaneously without conflicts or corruption.
+•	Transaction support (ACID) – Ensures operations are atomic, consistent, isolated, and durable, so partial or failed updates don’t leave the database in a bad state. 
+•	Backup and recovery – Provide tools for regular backups and restoring data after failures or accidental loss.
+•	Data independence – Logical and physical data independence: changes in storage or schema don’t require rewriting application programs.
+•	Reduced redundancy and improved consistency – Centralized control and constraints minimize duplicate data and keep it consistent across the system.
+•	Data sharing and integration – Multiple applications and users can share and integrate data from different sources through a common interface.
+•	Efficient querying and reporting – Support complex queries, joins, aggregations, and views to extract insights and generate reports.
+If you want, I can condense this into a short exam style list (e.g., 8–10 bullet points) tailored to your syllabus.
+
+Types of DBMS?
+DBMS types are usually grouped by data model (how data is organized) and by deployment/architecture.
+
+1) By data model
+Relational DBMS (RDBMS)
+•	Data is stored in tables (relations) with rows and columns, linked by keys.
+•	Uses SQL for querying; supports ACID transactions and strong integrity.
+•	Examples: MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server.
+Hierarchical DBMS
+•	Data is organized in a tree structure (parent–child, one to many).
+•	Fast for certain access patterns but rigid; mainly in legacy systems.
+•	Example: IBM IMS, Windows Registry (as a hierarchical store).
+Network DBMS
+•	Uses a graph like structure where records can have multiple parents (many to many).
+•	More flexible than hierarchical but complex to design and maintain.
+•	Example: IDMS (Integrated Database Management System), IDS.
+Object Oriented DBMS (OODBMS)
+•	Stores data as objects (like in OOP), with attributes and methods.
+•	Good for complex data and tight integration with OO languages.
+•	Examples: Object DB, Versant, db4o.
+
+NoSQL DBMS (non relational)
+Designed for large scale, semi structured or unstructured data; often relax some ACID properties for performance and scalability.
+
+
+
+
